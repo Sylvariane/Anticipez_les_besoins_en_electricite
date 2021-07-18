@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun Jul 18 15:15:15 2021
+Crée le 18/7/2021
 
-@author: cecil
+@author: Cécile Guillot
 """
 
 from flask import Flask, render_template, request, jsonify
@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 @app.route('/upload')
 def upload_file():
-    return render_template("upload.html")
+    return render_template("index.html")
 
 @app.route("/uploader", methods= ['POST'])
 def uploader_file():
@@ -32,7 +32,7 @@ def uploader_file():
             print(list(final_model_energy.predict(query)))
             
             dictionary = dict(zip(df.BuildingName, prediction))
-            
+
             return jsonify(str(dictionary))
         except:
             return jsonify({'trace' : traceback.format_exc()})

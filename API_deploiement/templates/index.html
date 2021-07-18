@@ -1,0 +1,76 @@
+<html>
+    <title>Green House Gas Emissions simulator</title>
+    <head>
+        <h1>Welcome in the simulator of Green House Gas Emission</h1>
+        <h2>City of Seattle</h2>
+        <p>This website is here to help you to estimate the emission of GHG. This estimation is only available for the city of Seattle</br>
+            In order to know your GHG Emission, you need some informations : 
+            <ul>
+                <li>The location (only the Neighborhood); </li>
+                <li>The Primary Property Type;</li>
+                <li>The year of construction; </li>
+                <li>The number of buildings on the property;</li>
+                <li>The number of floors;</li>
+                <li>The GFA of all the property.</li>
+            </ul>
+        </p>
+    </head>
+    <body>
+        <form action="http://localhost:5000/predict", method="POST"
+        enctype="multipart/form-data">
+                <label for="PrimaryPropertyType">Choose a Primary property Type:</label>
+        <select name="PrimaryPropertyType" required="required"/>
+            <option value="Hotel">Hotel</option>
+            <option value="Restaurant">Restaurant</option>
+            <option value="K-12 School">K-12 School</option>
+            <option value="University">University</option>
+            <option value="Office">Office</option>
+            <option value="Mixed Use Property">Mixed Use Property</option>
+            <option value="Self-Storage Facility">Self-Storage Facility</option>
+            <option value="Distribution Center">Distribution Center</option>
+            <option value="Senior Care Community">Senior Care Community</option>
+            <option value="Retail Store">Retail Store</option>
+            <option value="Hospital">Hospital</option>
+            <option value="Residence Hall">Residence Hall</option>
+            <option value="Non-Refrigerated Warehouse">Non-Refrigerated Warehouse</option>
+            <option value="Workship Facility">Workship Facility</option>
+            <option value="Supermarket/Grocery Store">Supermarket/Grocery Store</option>
+            <option value="Laboratory">Laboratory</option>
+            <option value="Refrigerated Warehouse">Refrigerated Warehouse</option>
+            <option value="Warehouse">Warehouse</option>
+            <option value="Other">Other</option>
+        </select></br></br>
+        <label for="Neighborhood">Select a Neighborhood:</label>
+        <select name="Neighborhood" required="required"/>
+            <option value="Downtown">Downtown</option>
+            <option value="Southeast">Southeast</option>
+            <option value="Southwest">Southwest</option>
+            <option value="Northeast">Northeast</option>
+            <option value="East">East</option>
+            <option value="Central">Central</option>
+            <option value="North">North</option>
+            <option value="Magnolia / queen anne">Magnolia/Queen Anne</option>
+            <option value="Lake union">Lake Union</option>
+            <option value="Greater duwamish">Greater Duwamish</option>
+            <option value="Ballard">Ballard</option>
+            <option value="Northwest">Northwest</option>
+            <option value="Delrigde">Delrigde</option></br>
+        </select></br></br>
+        <label for="YearBuilt">Enter the year of the construction: </label>
+        <input type="text" name="YearBuilt" placeholder="YYYY" required="required" /></br></br>
+        <label for="NumberofBuildings">Enter the number of building(s): </label>
+        <input type="text" name="NumberofBuildings" placerholder="1" required="required"/></br></br>
+        <label for="NumberofFloors">Enter the number of floor(s): </label>
+        <input type="text" name="NumberofFloors" placeholder="1" required="required" /></br></br>
+        <label for="PropertyGFATotal">Enter the total GFA: </label>
+        <input type="text" name="PropertyGFATotal" placeholder="" required="required"/></br></br>
+        <input type="submit"/>    
+    </form>
+    </br>
+    </br>
+    {{ prediction_text }}
+    </body>
+    <footer>
+        Develop by Cécile Guillot
+    </footer>
+</html>    
