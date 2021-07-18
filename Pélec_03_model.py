@@ -68,7 +68,7 @@ full_pipeline_energy = Pipeline([
     ("preprocessing", preprocessor),
     ("model", forest_reg_energy)
 ])
-joblib.dump(full_pipeline_energy, 'model_prediction_energy.pkl')
+joblib.dump(full_pipeline_energy, 'models/model_prediction_energy.pkl')
 
 #######################
 #####GHG EMISSIONS#####
@@ -93,7 +93,7 @@ full_pipeline_co2 = Pipeline([
     ("preprocessing", preprocessor),
     ("model", forest_reg_co2)
 ])
-joblib.dump(full_pipeline_co2, "model_prediction_co2.pkl")
+joblib.dump(full_pipeline_co2, "models/model_prediction_co2.pkl")
 
 # Test
 new_building = pd.DataFrame({"PrimaryPropertyType": "Hospital",
