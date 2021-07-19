@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Jul 15 19:50:36 2021
+Crée le 15 juillet 2021
 
 @author: cecil
 """
@@ -11,7 +11,6 @@ import numpy as np
 from scipy import stats
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.impute import SimpleImputer
-from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.model_selection import  train_test_split
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
@@ -24,7 +23,7 @@ data = pd.read_csv("datasets/benchmark_total.csv")
 # Separation of the features and the two targets
 y_energy = data["SiteEnergyUse(kBtu)"].values
 y_ghg = data["TotalGHGEmissions"].values
-X = data.drop(["SiteEnergyUse(kBtu)", "TotalGHGEmissions", "ENERGYSTARScore"], axis=1)
+X = data.drop(["SiteEnergyUse(kBtu)", "TotalGHGEmissions", "ENERGYSTARScore", "NbofFloors", "NbofBuildings"], axis=1)
 
 #######################
 ######ENERGY USE#######
@@ -59,7 +58,7 @@ X_test = preprocessor.transform(X_test)
 
 
 # Preparation of the model
-forest_reg_energy = RandomForestRegressor(n_estimators=350, min_samples_leaf=3, max_depth=4,
+forest_reg_energy = RandomForestRegressor(n_estimators=425, min_samples_leaf=3, max_depth=4,
                                    min_samples_split=2, max_features="auto", random_state=42)
 forest_reg_energy.fit(X_train, y_train)
 
@@ -68,7 +67,7 @@ full_pipeline_energy = Pipeline([
     ("preprocessing", preprocessor),
     ("model", forest_reg_energy)
 ])
-joblib.dump(full_pipeline_energy, 'models/model_prediction_energy.pkl')
+joblib.dump(full_pipeline_energy, 'API_deploiement/models/model_prediction_energy.pkl')
 
 #######################
 #####GHG EMISSIONS#####
@@ -84,7 +83,7 @@ X_train = preprocessor.transform(X_train)
 X_test = preprocessor.transform(X_test)
 
 # Preparation of the 2nd model
-forest_reg_co2 = RandomForestRegressor(n_estimators=460, min_samples_leaf=2, max_depth=4,
+forest_reg_co2 = RandomForestRegressor(n_estimators=430, min_samples_leaf=2, max_depth=4,
                                        min_samples_split=2, max_features="auto", random_state=42)
 forest_reg_co2.fit(X_train, y_train)
 
@@ -93,7 +92,7 @@ full_pipeline_co2 = Pipeline([
     ("preprocessing", preprocessor),
     ("model", forest_reg_co2)
 ])
-joblib.dump(full_pipeline_co2, "models/model_prediction_co2.pkl")
+joblib.dump(full_pipeline_co2, "API_deploiement/models/model_prediction_co2.pkl")
 
 # Test
 new_building = pd.DataFrame({"PrimaryPropertyType": "Hospital",

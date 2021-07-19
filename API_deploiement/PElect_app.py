@@ -11,7 +11,6 @@ import joblib
 import traceback
 import numpy as np
 import pandas as pd
-import os
 
 
 app = Flask(__name__, template_folder='templates', static_folder='templates/static')
