@@ -1,15 +1,17 @@
+<!DOCTYPE html>
+
 <html>
-    <title>Green House Gas Emissions simulator</title>
+    <title>Energy Use & Green House Gas Emissions simulator</title>
     <head>
-        <h1>Welcome in the simulator of Green House Gas Emission</h1>
+        <h1>Energy Use & Green House Gas Emissions Simulator</h1>
         <h2>City of Seattle</h2>
-        <p>This website is here to help you to estimate the emission of GHG. This estimation is only available for the city of Seattle</br>
-            In order to know your GHG Emission, you need some informations : 
+        <p>This website is here to help you to estimate the emission of GHG. This estimation is only available for the city of Seattle.</br>
+            In order to predict your environment impact, you need some informations: 
             <ul>
-                <li>The location (only the Neighborhood); </li>
-                <li>The Primary Property Type;</li>
+                <li>The kind of Property; </li>
+                <li>The localisation (only the Neighborhood);</li>
                 <li>The year of construction; </li>
-                <li>The number of buildings on the property;</li>
+                <li>The number of buildings on the Property;</li>
                 <li>The number of floors;</li>
                 <li>The GFA of all the property.</li>
             </ul>
@@ -68,9 +70,11 @@
     </form>
     </br>
     </br>
-    {{ prediction_text }}
+    <div class="result">
+        {{ prediction_text }}
+    </div>
     </body>
     <footer>
-        Develop by Cécile Guillot
+        <em>Developped by Cécile Guillot</em>
     </footer>
 </html>    
