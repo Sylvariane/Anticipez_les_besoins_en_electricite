@@ -5,17 +5,19 @@ Crée le 18/07/2021
 @author: Cécile Guillot
 """
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
 import joblib
 import traceback
 import numpy as np
 import pandas as pd
+import os
 
-app = Flask(__name__, template_folder="templates")
+
+app = Flask(__name__, template_folder='templates', static_folder='templates/static')
 
 @app.route('/')
-def home():
+def index():
     return render_template("index.html")
 
 @app.route("/predict", methods= ['POST'])
@@ -41,7 +43,7 @@ def predict():
     return render_template('index.html', prediction_text="Site Energy Use:  {} kBtu & GHG Emissions: {} Metrics Tons CO2.".format(output_energy, output_co2))
 
 if __name__ == "__main__":
-    model_co2 = joblib.load("./models/model_prediction_co2.pkl")
-    model_energy = joblib.load("./models/model_prediction_energy.pkl")
+    model_co2 = joblib.load("models/model_prediction_co2.pkl")
+    model_energy = joblib.load("models/model_prediction_energy.pkl")
     print("Models loaded")
     app.run(host="localhost", port=5000, debug=True)

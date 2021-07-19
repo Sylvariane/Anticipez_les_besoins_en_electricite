@@ -3,10 +3,13 @@
 <html>
     <title>Energy Use & Green House Gas Emissions simulator</title>
     <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
         <h1>Energy Use & Green House Gas Emissions Simulator</h1>
         <h2>City of Seattle</h2>
-        <p>This website is here to help you to estimate the emission of GHG. This estimation is only available for the city of Seattle.</br>
-            In order to predict your environment impact, you need some informations: 
+    </head>
+    <body>
+        <p>This website is here to help you to estimate the emission of GHG and the energy uses. This estimation is only available for the city of Seattle.</br>
+            In order to predict your environmental impact, you need some informations: 
             <ul>
                 <li>The kind of Property; </li>
                 <li>The localisation (only the Neighborhood);</li>
@@ -16,8 +19,6 @@
                 <li>The GFA of all the property.</li>
             </ul>
         </p>
-    </head>
-    <body>
         <form action="http://localhost:5000/predict", method="POST"
         enctype="multipart/form-data">
                 <label for="PrimaryPropertyType">Choose a Primary property Type:</label>
@@ -66,7 +67,7 @@
         <input type="text" name="NumberofFloors" placeholder="1" required="required" /></br></br>
         <label for="PropertyGFATotal">Enter the total GFA: </label>
         <input type="text" name="PropertyGFATotal" placeholder="" required="required"/></br></br>
-        <input type="submit"/>    
+        <input type="submit"/ value="Submit">    
     </form>
     </br>
     </br>
