@@ -39,7 +39,7 @@ def predict():
     output_co2 = round(prediction_co2[0], 2)
     prediction_energy = model_energy.predict(df)
     output_energy = round(prediction_energy[0], 0)
-    return render_template('index.html', prediction_text="Site Energy Use:  {} kBtu & GHG Emissions: {} Metrics Tons CO2.".format(output_energy, output_co2))
+    return render_template('index.html', prediction_text="Site Energy Use:  {} kBtu\n GHG Emissions: {} Metrics Tons CO2.".format(output_energy, output_co2))
 
 if __name__ == "__main__":
     model_co2 = joblib.load("models/model_prediction_co2.pkl")
