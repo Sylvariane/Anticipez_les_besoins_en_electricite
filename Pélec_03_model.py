@@ -2,7 +2,7 @@
 """
 Crée le 15 juillet 2021
 
-@author: cecil
+@author: Cécile Guillot
 """
 
 # importing librairies
@@ -24,7 +24,7 @@ data = pd.read_csv("datasets/benchmark_total.csv")
 ######ENERGY USE#######
 #######################
 
-train_set, test_set = train_test_split(data, test_size=0.2, random_state=42, stratify=data["Clusters"])
+train_set, test_set = train_test_split(data, test_size=0.2, random_state=42, stratify=data["PrimaryPropertyType"])
 
 y_train = train_set["SiteEnergyUse(kBtu)"].values
 y_test = test_set["SiteEnergyUse(kBtu)"].values
@@ -73,7 +73,7 @@ joblib.dump(full_pipeline_energy, 'API_deploiement/models/model_prediction_energ
 #######################
 
 # Preparation of the different datasets
-train_set, test_set = train_test_split(data, test_size=0.2, random_state=42, stratify=data["Clusters"])
+train_set, test_set = train_test_split(data, test_size=0.2, random_state=42, stratify=data["PrimaryPropertyType"])
 
 y_train = train_set["TotalGHGEmissions"].values
 y_test = test_set["TotalGHGEmissions"].values
@@ -84,7 +84,7 @@ y_train = y_train.reshape(-1, 1)
 y_test = y_test.reshape(-1, 1)
 
 # Preprocessing of the data
-X_train = preprocessor.transform(X_train)
+X_train = preprocessor.fit_transform(X_train)
 X_test = preprocessor.transform(X_test)
 
 # Preparation of the 2nd model
